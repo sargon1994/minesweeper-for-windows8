@@ -62,21 +62,21 @@
                 <Grid HorizontalAlignment="Left" Height="206" Margin="120,30,0,0" VerticalAlignment="Top" Width="451">
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Map size" VerticalAlignment="Top" Height="41" Width="193" FontWeight="Bold" FontSize="36" FontStyle="Italic" Margin="0,0,0,0"/>
                     <TextBlock HorizontalAlignment="Left" Margin="30,50,0,0" TextWrapping="Wrap" Text="Choose one of the three map size." VerticalAlignment="Top" Width="417" FontSize="24"/>
-                    <RadioButton Content="Small" HorizontalAlignment="Left" Margin="56,130,0,0" VerticalAlignment="Top" FontSize="18"/>
-                    <RadioButton Content="Medium" HorizontalAlignment="Left" Margin="156,130,0,0" VerticalAlignment="Top" FontSize="18"/>
-                    <RadioButton Content="Large" HorizontalAlignment="Left" Margin="272,130,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <RadioButton Content="Small" HorizontalAlignment="Left" Margin="56,130,0,0" VerticalAlignment="Top" FontSize="18" Checked="setMapSizeToSmall"/>
+                    <RadioButton Content="Medium" HorizontalAlignment="Left" Margin="156,130,0,0" VerticalAlignment="Top" FontSize="18" Checked="setMapSizeToMedium"/>
+                    <RadioButton Content="Large" HorizontalAlignment="Left" Margin="272,130,0,0" VerticalAlignment="Top" FontSize="18" Checked="setMapSizeToLarge"/>
                 </Grid>
                 <Grid HorizontalAlignment="Left" Height="206" Margin="120,278,0,0" VerticalAlignment="Top" Width="451">
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Difficult" VerticalAlignment="Top" Height="41" Width="193" FontWeight="Bold" FontSize="36" FontStyle="Italic" Margin="0,0,0,0"/>
                     <TextBlock HorizontalAlignment="Left" Margin="30,50,0,0" TextWrapping="Wrap" Text="Choose one of the three difficulty level." VerticalAlignment="Top" Width="417" FontSize="24"/>
-                    <RadioButton Content="Easy" HorizontalAlignment="Left" Margin="56,130,0,0" VerticalAlignment="Top" FontSize="18"/>
-                    <RadioButton Content="Medium" HorizontalAlignment="Left" Margin="156,130,0,0" VerticalAlignment="Top" FontSize="18"/>
-                    <RadioButton Content="Hard" HorizontalAlignment="Left" Margin="272,130,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <RadioButton Content="Easy" HorizontalAlignment="Left" Margin="56,130,0,0" VerticalAlignment="Top" FontSize="18" Checked="setDifficultyToEasy"/>
+                    <RadioButton Content="Medium" HorizontalAlignment="Left" Margin="156,130,0,0" VerticalAlignment="Top" FontSize="18" Checked="setDifficultyToMedium"/>
+                    <RadioButton Content="Hard" HorizontalAlignment="Left" Margin="272,130,0,0" VerticalAlignment="Top" FontSize="18" Checked="setDifficultyToHard"/>
                 </Grid>
                 <Grid HorizontalAlignment="Left" Height="206" Margin="700,20,0,0" VerticalAlignment="Top" Width="451">
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Interval" VerticalAlignment="Top" Height="41" Width="157" FontWeight="Bold" FontSize="36" FontStyle="Italic" Margin="0,0,0,0"/>
                     <TextBlock HorizontalAlignment="Left" Margin="30,50,0,0" TextWrapping="Wrap" Text="Use the slider to decrease or increase the space between the fields." VerticalAlignment="Top" Width="417" FontSize="24"/>
-                    <Slider Margin="27,137,0,0" VerticalAlignment="Top" Width="402" Height="42" Foreground="#FF0D23F9" FontSize="14" HorizontalAlignment="Left" Background="#29FFFFFF"/>
+                    <Slider Margin="27,137,0,0" VerticalAlignment="Top" Width="402" Height="42" Foreground="#FF0D23F9" FontSize="14" HorizontalAlignment="Left" Background="#29FFFFFF" KeyUp="setInterval"/>
                 </Grid>
             </Grid>
 
