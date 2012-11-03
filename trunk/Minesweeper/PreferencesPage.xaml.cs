@@ -48,5 +48,40 @@ namespace Minesweeper
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
         }
+
+        private void setDifficultyToEasy(object sender, RoutedEventArgs e)
+        {
+            //TODO add call to model
+        }
+
+        private void setDifficultyToMedium(object sender, RoutedEventArgs e)
+        {
+            //TODO add call to model
+        }
+
+        private void setDifficultyToHard(object sender, RoutedEventArgs e)
+        {
+            //TODO add call to model
+        }
+
+        private void setMapSizeToSmall(object sender, RoutedEventArgs e)
+        {
+            //TODO add call to model
+        }
+
+        private void setMapSizeToMedium(object sender, RoutedEventArgs e)
+        {
+            //TODO add call to model
+        }
+
+        private void setMapSizeToLarge(object sender, RoutedEventArgs e)
+        {
+            //TODO add call to model
+        }
+
+        private void setInterval(object sender, KeyRoutedEventArgs e)
+        {
+            //TODO add call to model
+        }
     }
 }
