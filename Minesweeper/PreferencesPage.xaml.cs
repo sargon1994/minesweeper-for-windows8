@@ -37,6 +37,26 @@ namespace Minesweeper
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+            if (null != pageState)
+            {
+                smallMap.IsChecked = (bool)pageState["smallMapIsChecked"];
+                mediumMap.IsChecked = (bool)pageState["mediumMapIsChecked"];
+                largeMap.IsChecked = (bool)pageState["largeMapIsChecked"];
+                easyGame.IsChecked = (bool)pageState["easyGame"];
+                mediumGame.IsChecked = (bool)pageState["mediumGame"];
+                hardGame.IsChecked = (bool)pageState["hardGame"];
+                intervalSize.Value = (double)pageState["intervalSize"];
+            }
+            else
+            {
+                smallMap.IsChecked = true;
+                mediumMap.IsChecked = false;
+                largeMap.IsChecked = false;
+                easyGame.IsChecked = true;
+                mediumGame.IsChecked = false;
+                hardGame.IsChecked = false;
+                intervalSize.Value = (double)50.0;
+            }
         }
 
         /// <summary>
@@ -47,6 +67,13 @@ namespace Minesweeper
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+            pageState["smallMapIsChecked"] = smallMap.IsChecked;
+            pageState["mediumMapIsChecked"] = mediumMap.IsChecked;
+            pageState["largeMapIsChecked"] = largeMap.IsChecked;
+            pageState["easyGame"] = easyGame.IsChecked;
+            pageState["mediumGame"] = mediumGame.IsChecked;
+            pageState["hardGame"] = hardGame.IsChecked;
+            pageState["intervalSize"] = intervalSize.Value;
         }
 
         private void setDifficultyToEasy(object sender, RoutedEventArgs e)
