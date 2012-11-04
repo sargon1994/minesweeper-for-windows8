@@ -142,12 +142,9 @@
     <Content Include="Assets\mine_start2.png" />
     <Content Include="Assets\mine_win1.png" />
     <Content Include="Assets\mine_win2.png" />
-    <Content Include="Assets\package_games.png" />
-    <Content Include="Assets\settings.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\winner-icon17.jpg" />
     <Content Include="Common\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
