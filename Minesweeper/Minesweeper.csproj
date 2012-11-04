@@ -130,6 +130,7 @@
     <None Include="Minesweeper_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\background.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\mine_indicate1.png" />
     <Content Include="Assets\mine_indicate2.png" />

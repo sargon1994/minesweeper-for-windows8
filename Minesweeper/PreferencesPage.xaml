@@ -26,6 +26,7 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Image Source="Assets/background.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1080" Margin="0,0,0,0" Grid.RowSpan="2" Width="1920" />
 
         <!-- Back button and page title -->
         <Grid>
@@ -34,7 +35,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}" FontWeight="Bold" FontStyle="Italic"/>
         </Grid>
         <Grid HorizontalAlignment="Left" Height="628" Grid.Row="1" Width="1364" VerticalAlignment="Top">
             <Grid HorizontalAlignment="Left" Height="206" Margin="120,30,0,0" VerticalAlignment="Top" Width="451">
