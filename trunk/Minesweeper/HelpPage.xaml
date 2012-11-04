@@ -36,7 +36,7 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
+        <Image Source="Assets/background.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Grid.RowSpan="2" Width="1920" Height="1080" />
         <!-- Horizontal scrolling grid used in most view states -->
         <GridView
             x:Name="itemGridView"
@@ -76,12 +76,6 @@
                 </GroupStyle>
             </GridView.GroupStyle>
 
-
-
-
-
-
-
             <Grid Height="600" Width="300">
                 <TextBlock TextWrapping="Wrap" Text="You can discover the map if you click on any of the blue (undiscovered) fields." Height="50" Margin="0,0,0,555" TextAlignment="Center"/>
                 <Image HorizontalAlignment="Left" Height="250" Margin="25,59,0,0" VerticalAlignment="Top" Width="250" Source="Assets/mine_start1.png"/>
@@ -107,16 +101,7 @@
                 <Image HorizontalAlignment="Left" Height="250" Margin="25,59,0,0" VerticalAlignment="Top" Width="250" Source="Assets/mine_win1.png"/>
                 <Image HorizontalAlignment="Left" Height="250" Margin="25,321,0,0" VerticalAlignment="Top" Width="250" Source="Assets/mine_win2.png"/>
             </Grid>
-           
-            
-
-
-
-
-
-
-
-
+ 
         </GridView>
 
         <!-- Vertical scrolling list only used when snapped -->
@@ -160,7 +145,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}" FontWeight="Bold" FontStyle="Italic"/>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

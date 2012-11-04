@@ -37,13 +37,14 @@
         This grid acts as a root panel for the page that defines two rows:
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
-    -->
+    -->    
     <Grid Style="{StaticResource LayoutRootStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <Image Source="Assets/background.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="1080" Margin="0,0,0,0" Grid.RowSpan="2" Width="1920" />
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
@@ -51,7 +52,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}" FontWeight="Bold" FontStyle="Italic"/>
         </Grid>
         <FlipView x:Name="flipView1" 
               BorderBrush="Black" Margin="20,20,20,20" Grid.Row="1">
