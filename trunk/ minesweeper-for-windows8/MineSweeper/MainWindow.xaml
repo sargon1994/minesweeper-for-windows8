@@ -1,0 +1,8 @@
+﻿<Window x:Class="MineSweeper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="520" Width="500" xmlns:my="clr-namespace:MineSweeper.View">
+    <Grid Name="mainGrid">
+        <my:FieldView3D x:Name="fieldView3D"/>
+    </Grid>
+</Window>
