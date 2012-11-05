@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="MineSweeper.View.SquareView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" MinHeight="10" MinWidth="10">
+    <Grid>
+        <Image HorizontalAlignment="Stretch" Name="image" Stretch="Fill" VerticalAlignment="Stretch"/>
+        <Grid Opacity="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="8*" Name="MiddleColumn"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="8*" Name="MiddleRow"/>
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Rectangle Name="ClickSpace" Grid.Column="1" Grid.Row="1" MouseDown="clickSpace_MouseDown" MouseLeftButtonUp="clickSpace_LeftButtonMouseUp" MouseRightButtonUp="ClickSpace_MouseRightButtonUp"  Fill="Red" />
+        </Grid>
+    </Grid>
+</UserControl>
