@@ -23,13 +23,12 @@ namespace MineSweeper
     {
         public MainWindow()
         {   
-            Field field = new Field(10,10,10);
+            Field field = new Field(20,20,60);
             ViewContext vc = new ViewContext();
             InitializeComponent();
 
             fieldView3D.setField(field);
             fieldView3D.setContext(vc);
-
         }
     }
 }

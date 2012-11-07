@@ -55,6 +55,8 @@ namespace MineSweeper.View
             }
 
             for (int x = 0; x < field.Width; x++)
+            {
+                
                 for (int y = 0; y < field.Heigth; y++)
                 {
                     SquareView actualView = new SquareView();
@@ -68,6 +70,8 @@ namespace MineSweeper.View
                     Grid.SetColumn(actualView, x);
                     Grid.SetRow(actualView, y);
                 }
+                System.Diagnostics.Debug.WriteLine("Progress: " + ((double)x+1) / (field.Width)*100 + "%");
+            }
             this.UpdateLayout();
         }
 
