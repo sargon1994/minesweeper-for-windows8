@@ -70,27 +70,52 @@ namespace MineSweeper.View
         private MeshGeometry3D createGeometry(Field field, double focusx, double focusy, bool dofocuse)
         {
             MeshGeometry3D tableGeometry = new MeshGeometry3D();
-            for (int y = 0; y <= field.Heigth; y++) for (int x = 0; x <= field.Width; x++)
-                {
-                    double z;
-                    if (dofocuse)
+            if (viewContext!=null && viewContext.IsFocusEnabled)
+            {
+                for (int y = 0; y <= field.Heigth; y++) for (int x = 0; x <= field.Width; x++)
                     {
-                        double rsquare = (x - focusx) * (x - focusx) + (y - focusy) * (y - focusy);
-                        z = -Math.Exp(-rsquare / 10)*viewContext.MinZoom;
+                        double z;
+                        if (dofocuse)
+                        {
+                            double rsquare = (x - focusx) * (x - focusx) + (y - focusy) * (y - focusy);
+                            z = Math.Exp(-rsquare / 25) * camera.Position.Z/2;
+                        }
+                        else z = 0;
+                        tableGeometry.Positions.Add(new Point3D(x - (field.Width / 2.0), y - (field.Heigth / 2.0), z));
+                        tableGeometry.TextureCoordinates.Add(new Point((double)x / field.Width, (double)y / field.Heigth));
                     }
-                    else z = 0;
-                    tableGeometry.Positions.Add(new Point3D(x - (field.Width / 2.0), y - (field.Heigth / 2.0), z));
-                    tableGeometry.TextureCoordinates.Add(new Point((double)x / field.Width, (double)y / field.Heigth));
-                }
-            for (int y = 0; y < field.Heigth; y++) for (int x = 0; x < field.Width; x++)
-                {
-                    tableGeometry.TriangleIndices.Add(y * (field.Width + 1) + x);
-                    tableGeometry.TriangleIndices.Add((y + 1) * (field.Width + 1) + x);
-                    tableGeometry.TriangleIndices.Add(y * (field.Width + 1) + x + 1);
-                    tableGeometry.TriangleIndices.Add((y + 1) * (field.Width + 1) + x);
-                    tableGeometry.TriangleIndices.Add((y + 1) * (field.Width + 1) + x + 1);
-                    tableGeometry.TriangleIndices.Add(y * (field.Width + 1) + x + 1);
-                }
+                for (int y = 0; y < field.Heigth; y++) for (int x = 0; x < field.Width; x++)
+                    {
+                        tableGeometry.TriangleIndices.Add(y * (field.Width + 1) + x);
+                        tableGeometry.TriangleIndices.Add((y + 1) * (field.Width + 1) + x);
+                        tableGeometry.TriangleIndices.Add(y * (field.Width + 1) + x + 1);
+                        tableGeometry.TriangleIndices.Add((y + 1) * (field.Width + 1) + x);
+                        tableGeometry.TriangleIndices.Add((y + 1) * (field.Width + 1) + x + 1);
+                        tableGeometry.TriangleIndices.Add(y * (field.Width + 1) + x + 1);
+                    }
+            }
+            else
+            {
+                tableGeometry.Positions.Add(new Point3D(- (field.Width / 2.0), - (field.Heigth / 2.0), 0));
+                tableGeometry.TextureCoordinates.Add(new Point(0,0));
+
+                tableGeometry.Positions.Add(new Point3D((field.Width / 2.0), -(field.Heigth / 2.0), 0));
+                tableGeometry.TextureCoordinates.Add(new Point(1, 0));
+
+                tableGeometry.Positions.Add(new Point3D(-(field.Width / 2.0), (field.Heigth / 2.0), 0));
+                tableGeometry.TextureCoordinates.Add(new Point(0, 1));
+
+                tableGeometry.Positions.Add(new Point3D((field.Width / 2.0), (field.Heigth / 2.0), 0));
+                tableGeometry.TextureCoordinates.Add(new Point(1, 1));
+
+                tableGeometry.TriangleIndices.Add(0);
+                tableGeometry.TriangleIndices.Add(2);
+                tableGeometry.TriangleIndices.Add(1);
+
+                tableGeometry.TriangleIndices.Add(2);
+                tableGeometry.TriangleIndices.Add(3);
+                tableGeometry.TriangleIndices.Add(1);
+            }
             return tableGeometry;
         }
 
@@ -152,8 +177,8 @@ namespace MineSweeper.View
             if (this.viewContext.IsFocusEnabled)
             {
                 fieldModel.Geometry = createGeometry(field,
-                    camera.Position.X - ((newPosition.X + BackgroundGrid.ActualWidth / 2)  * cameraPosition.Z / BackgroundGrid.ActualWidth),
-                    camera.Position.Y - ((newPosition.Y + BackgroundGrid.ActualWidth / 2)  * cameraPosition.Z / BackgroundGrid.ActualHeight),
+                    camera.Position.X - ((newPosition.X - BackgroundGrid.ActualWidth / 2)  *2* cameraPosition.Z / BackgroundGrid.ActualWidth) + field.Width/2.0,
+                    camera.Position.Y - ((newPosition.Y - BackgroundGrid.ActualWidth / 2) * 2 * cameraPosition.Z / BackgroundGrid.ActualWidth) + field.Heigth / 2.0,
                     true);
             }
         }
