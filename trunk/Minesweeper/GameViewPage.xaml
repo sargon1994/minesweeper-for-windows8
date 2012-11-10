@@ -1,0 +1,33 @@
+﻿<Page xmlns:View="using:MineSweeperViewProject.View" 
+    x:Class="Minesweeper.GameViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Minesweeper"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.BottomAppBar>
+        <AppBar>
+            <Grid>
+                <Button x:Name="mainPageButton" 
+                HorizontalAlignment="Right" 
+                Style="{StaticResource HomeAppBarButtonStyle}" Margin="0,0,120,0" Click="openMainPage"/>
+                <Button x:Name="preferencesPageButton" 
+                HorizontalAlignment="Right" 
+                Style="{StaticResource EditAppBarButtonStyle}" Margin="0,0,60,0" Click="openPreferencesPage"/>
+                <Button x:Name="helpPageButton" 
+                HorizontalAlignment="Right" 
+                Style="{StaticResource HelpAppBarButtonStyle}" Click="openHelpPage"/>
+            </Grid>
+            
+        </AppBar>
+    </Page.BottomAppBar>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid x:Name="GamePlace" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <View:FieldViewPseudo3D x:Name="fieldViewPseudo3D"/>
+            <!--<View:Field-->
+        </Grid>
+
+    </Grid>
+</Page>
