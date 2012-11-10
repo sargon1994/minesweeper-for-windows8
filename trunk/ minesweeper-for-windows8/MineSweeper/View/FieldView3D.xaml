@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Background="Lavender" MouseWheel="Space_MouseWheel" MouseMove="Space_MouseMove" Name="BackgroundGrid">
+    <Grid MouseWheel="Space_MouseWheel" MouseMove="Space_MouseMove" Name="BackgroundGrid" SizeChanged="Space_SizeChanged">
         <Viewport3D Name="Space">
             <ModelVisual3D>
                 <ModelVisual3D.Content>

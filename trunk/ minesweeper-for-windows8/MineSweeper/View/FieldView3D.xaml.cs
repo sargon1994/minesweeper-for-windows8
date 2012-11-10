@@ -78,7 +78,7 @@ namespace MineSweeper.View
                         if (dofocuse)
                         {
                             double rsquare = (x - focusx) * (x - focusx) + (y - focusy) * (y - focusy);
-                            z = Math.Exp(-rsquare / 25) * camera.Position.Z/2;
+                            z = Math.Exp(-rsquare / 25) * camera.Position.Z / 2;//*/ -rsquare / 4;
                         }
                         else z = 0;
                         tableGeometry.Positions.Add(new Point3D(x - (field.Width / 2.0), y - (field.Heigth / 2.0), z));
@@ -121,7 +121,13 @@ namespace MineSweeper.View
 
         private double getMaxHigh()
         {
-            return Math.Max(this.field.Heigth, this.field.Width)*0.5*viewContext.MaxZoomMultiplier;
+            return getMaxHigh(this.Space.RenderSize);
+        }
+
+        private double getMaxHigh(Size spaceSize)
+        {
+            double ratio = spaceSize.Width / Math.Min(spaceSize.Width, spaceSize.Height);
+            return Math.Max(this.field.Heigth, this.field.Width) * 0.5 * viewContext.MaxZoomMultiplier * ratio;
         }
 
         private double moveCameraZ(double Z)
@@ -180,6 +186,20 @@ namespace MineSweeper.View
                     camera.Position.X - ((newPosition.X - BackgroundGrid.ActualWidth / 2)  *2* cameraPosition.Z / BackgroundGrid.ActualWidth) + field.Width/2.0,
                     camera.Position.Y - ((newPosition.Y - BackgroundGrid.ActualWidth / 2) * 2 * cameraPosition.Z / BackgroundGrid.ActualWidth) + field.Heigth / 2.0,
                     true);
+            }
+        }
+
+        private void Space_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (this.field != null)
+            {
+                double oldMaxZ = this.getMaxHigh(e.PreviousSize);
+                double newMaxZ = this.getMaxHigh(e.NewSize);
+                double newZ = this.camera.Position.Z / oldMaxZ * newMaxZ;
+                if (!Double.IsNaN(newZ))
+                {
+                    this.moveCameraZ(newZ - this.camera.Position.Z);
+                }
             }
         }
     }
