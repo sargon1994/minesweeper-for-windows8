@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="MineSweeperViewProject.View.SquareView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" MinHeight="10" MinWidth="10">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="15*" x:Name="ImageSpaceMiddleColumn"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="15*" x:Name="ImageSpaceMiddleRow"/>
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Image Grid.Column="1" Grid.Row="1" Name="image" Source="ms-appx:///pics/active_mine.png"/>
+        </Grid>
+        <Grid Opacity="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="8*" x:Name="DeadSpaceMiddleColumn"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="8*" x:Name="DeadSpaceMiddleRow"/>
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Rectangle Name="ClickSpace" Grid.Column="1" Grid.Row="1" Fill="Red" Tapped="tapped" RightTapped="rightTapped" />
+        </Grid>
+    </Grid>
+</UserControl>

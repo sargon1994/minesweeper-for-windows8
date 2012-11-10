@@ -417,12 +417,13 @@
         <Setter Property="AutomationProperties.AutomationId" Value="SkipAheadAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Skip Ahead"/>
         <Setter Property="Content" Value="&#xE101;"/>
-    </Style>
+    </Style>-->
     <Style x:Key="PlayAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="PlayAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Play"/>
         <Setter Property="Content" Value="&#xE102;"/>
     </Style>
+    <!--
     <Style x:Key="PauseAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="PauseAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Pause"/>
@@ -484,12 +485,12 @@
         <Setter Property="AutomationProperties.AutomationId" Value="UndoAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Undo"/>
         <Setter Property="Content" Value="&#xE10E;"/>
-    </Style>
+    </Style>-->
     <Style x:Key="HomeAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="HomeAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Home"/>
         <Setter Property="Content" Value="&#xE10F;"/>
-    </Style>
+    </Style><!--
     <Style x:Key="OutAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="OutAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Out"/>
