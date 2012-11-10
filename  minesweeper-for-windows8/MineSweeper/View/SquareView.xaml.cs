@@ -56,8 +56,8 @@ namespace MineSweeper.View
         public void setContext(ViewContext context)
         {
             this.viewContext = context;
-            this.MiddleColumn.Width = new GridLength(context.SquareDeadSpace, GridUnitType.Star);
-            this.MiddleRow.Height = new GridLength(context.SquareDeadSpace, GridUnitType.Star);
+            this.DeadSpaceMiddleColumn.Width = new GridLength(context.SquareDeadSpace, GridUnitType.Star);
+            this.DeadSpaceMiddleRow.Height = new GridLength(context.SquareDeadSpace, GridUnitType.Star);
         }
 
         public void updateImage(bool showAll)

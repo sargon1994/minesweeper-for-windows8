@@ -6,16 +6,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" MinHeight="10" MinWidth="10">
     <Grid>
-        <Image HorizontalAlignment="Stretch" Name="image" Stretch="Fill" VerticalAlignment="Stretch"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4"/>
+                <ColumnDefinition Width="8*" Name="ImageSpaceMiddleColumn"/>
+                <ColumnDefinition Width="4"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4"/>
+                <RowDefinition Height="8*" Name="ImageSpaceMiddleRow"/>
+                <RowDefinition Height="4" />
+            </Grid.RowDefinitions>
+            <Image Grid.Column="1" Grid.Row="1" Name="image" Grid.IsSharedSizeScope="True"/>
+        </Grid>
         <Grid Opacity="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="8*" Name="MiddleColumn"/>
+                <ColumnDefinition Width="8*" Name="DeadSpaceMiddleColumn"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="8*" Name="MiddleRow"/>
+                <RowDefinition Height="8*" Name="DeadSpaceMiddleRow"/>
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Rectangle Name="ClickSpace" Grid.Column="1" Grid.Row="1" MouseDown="clickSpace_MouseDown" MouseLeftButtonUp="clickSpace_LeftButtonMouseUp" MouseRightButtonUp="ClickSpace_MouseRightButtonUp"  Fill="Red" />
