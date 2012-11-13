@@ -38,6 +38,7 @@
         </Grid.RowDefinitions>
         <!--<Image Source="Assets/background.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Grid.RowSpan="2" Width="1920" Height="1080" />-->
         <!-- Horizontal scrolling grid used in most view states -->
+        <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="Assets/bg_menu.PNG" Margin="0,0,0,0" Grid.RowSpan="2"/>
         <GridView
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"

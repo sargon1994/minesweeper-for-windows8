@@ -70,6 +70,11 @@ namespace MineSweeperViewProject.View
             this.UpdateLayout();
         }
 
+        public Field getField()
+        {
+            return this.field;
+        }
+
         public void pickAndUpdate(Square picked)
         {
             if (!this.field.GameHasEnded)

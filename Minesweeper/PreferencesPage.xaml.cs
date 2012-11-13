@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using MineSweeperViewProject.View;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -20,10 +21,61 @@ namespace Minesweeper
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
     public sealed partial class PreferencesPage : Minesweeper.Common.LayoutAwarePage
-    {
+    {        
+        private static String difficult = "Easy";
+        private static String size = "Small";        
+
         public PreferencesPage()
         {
             this.InitializeComponent();
+
+            ViewContext viewContext = MinesweeperPage.getViewContext();          
+
+            if (viewContext.IsColored)
+            {
+                coloredNumbers.SelectedIndex = 1;
+            }
+            else
+            {
+                coloredNumbers.SelectedIndex = 0;
+            }
+
+            if (18 == viewContext.SquareDeadSpace)
+            {
+                this.interval.SelectedIndex = 0;
+            }
+            else if (8 == viewContext.SquareDeadSpace)
+            {
+                this.interval.SelectedIndex = 1;
+            } else {
+                this.interval.SelectedIndex = 2;
+            }
+
+            if (0 == viewContext.getMapSize())
+            {
+                this.mapSize.SelectedIndex = 0;
+            }
+            else if (1 == viewContext.getMapSize())
+            {
+                this.mapSize.SelectedIndex = 1;
+            }
+            else
+            {
+                this.mapSize.SelectedIndex = 2;
+            }
+
+            if (0 == viewContext.getMineNumber())
+            {
+                this.difficulty.SelectedIndex = 0;
+            }
+            else if (1 == viewContext.getMineNumber())
+            {
+                this.difficulty.SelectedIndex = 1;
+            }
+            else
+            {
+                this.difficulty.SelectedIndex = 2;
+            }   
         }
 
         /// <summary>
@@ -39,23 +91,9 @@ namespace Minesweeper
         {
             if (null != pageState)
             {
-                smallMap.IsChecked = (bool)pageState["smallMapIsChecked"];
-                mediumMap.IsChecked = (bool)pageState["mediumMapIsChecked"];
-                largeMap.IsChecked = (bool)pageState["largeMapIsChecked"];
-                easyGame.IsChecked = (bool)pageState["easyGame"];
-                mediumGame.IsChecked = (bool)pageState["mediumGame"];
-                hardGame.IsChecked = (bool)pageState["hardGame"];
-                intervalSize.Value = (double)pageState["intervalSize"];
             }
             else
             {
-                smallMap.IsChecked = true;
-                mediumMap.IsChecked = false;
-                largeMap.IsChecked = false;
-                easyGame.IsChecked = true;
-                mediumGame.IsChecked = false;
-                hardGame.IsChecked = false;
-                intervalSize.Value = (double)50.0;
             }
         }
 
@@ -67,48 +105,68 @@ namespace Minesweeper
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
-            pageState["smallMapIsChecked"] = smallMap.IsChecked;
-            pageState["mediumMapIsChecked"] = mediumMap.IsChecked;
-            pageState["largeMapIsChecked"] = largeMap.IsChecked;
-            pageState["easyGame"] = easyGame.IsChecked;
-            pageState["mediumGame"] = mediumGame.IsChecked;
-            pageState["hardGame"] = hardGame.IsChecked;
-            pageState["intervalSize"] = intervalSize.Value;
+        }        
+
+        private void changeColoredNumbers(object sender, SelectionChangedEventArgs e)
+        {
+            String color = (String)e.AddedItems.First();
+            if (color.Equals("True"))
+            {
+                MinesweeperPage.getViewContext().IsColored = true;
+            }
+            else
+            {
+                MinesweeperPage.getViewContext().IsColored = false;
+            }
         }
 
-        private void setDifficultyToEasy(object sender, RoutedEventArgs e)
+        private void changeMapSize(object sender, SelectionChangedEventArgs e)
         {
-            //TODO add call to model
+            String size = (String)e.AddedItems.First();            
+            if (size.Equals("Small")) {
+                MinesweeperPage.getViewContext().setMapSize(0);
+            }
+            else if (size.Equals("Medium"))
+            {
+                MinesweeperPage.getViewContext().setMapSize(1);
+            } else {
+                MinesweeperPage.getViewContext().setMapSize(2);
+            }
+            MinesweeperPage.newGame();
         }
 
-        private void setDifficultyToMedium(object sender, RoutedEventArgs e)
+        private void changeDifficult(object sender, SelectionChangedEventArgs e)
         {
-            //TODO add call to model
+            String difficult = (String)e.AddedItems.First();
+            if (difficult.Equals("Easy"))
+            {
+                MinesweeperPage.getViewContext().setMineNumber(0);
+            }
+            else if (difficult.Equals("Medium"))
+            {
+                MinesweeperPage.getViewContext().setMineNumber(1);
+            }
+            else
+            {
+                MinesweeperPage.getViewContext().setMineNumber(2);
+            }
         }
 
-        private void setDifficultyToHard(object sender, RoutedEventArgs e)
+        private void changeInterval(object sender, SelectionChangedEventArgs e)
         {
-            //TODO add call to model
-        }
-
-        private void setMapSizeToSmall(object sender, RoutedEventArgs e)
-        {
-            //TODO add call to model
-        }
-
-        private void setMapSizeToMedium(object sender, RoutedEventArgs e)
-        {
-            //TODO add call to model
-        }
-
-        private void setMapSizeToLarge(object sender, RoutedEventArgs e)
-        {
-            //TODO add call to model
-        }
-
-        private void setInterval(object sender, KeyRoutedEventArgs e)
-        {
-            //TODO add call to model
+            String interv = (String)e.AddedItems.First();
+            if (interv.Equals("Low"))
+            {
+                MinesweeperPage.getViewContext().SquareDeadSpace = 18;
+            }
+            else if (interv.Equals("Medium"))
+            {
+                MinesweeperPage.getViewContext().SquareDeadSpace = 8;
+            }
+            else
+            {
+                MinesweeperPage.getViewContext().SquareDeadSpace = 4;
+            }
         }
     }
 }
