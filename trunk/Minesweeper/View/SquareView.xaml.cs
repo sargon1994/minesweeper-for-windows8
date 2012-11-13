@@ -59,16 +59,17 @@ namespace MineSweeperViewProject.View
             this.viewContext = context;
             this.DeadSpaceMiddleColumn.Width = new GridLength(context.SquareDeadSpace, GridUnitType.Star);
             this.DeadSpaceMiddleRow.Height = new GridLength(context.SquareDeadSpace, GridUnitType.Star);
+            this.updateImage(this.FieldView.getField().GameHasEnded);
         }
 
         public void updateImage(bool showAll)
-        {
+        {                        
             if (this.Square.isUnfolded || showAll)
             {
                 if (Square.isEmpty) setImage(nonMineImages[0]);
                 else if (Square.isNumber)
                 {
-                    if(viewContext.IsColored)
+                    if(viewContext != null && viewContext.IsColored)
                         setImage(nonMineColoredImages[Square.NumberOfMineNeighbours]);
                     else
                         setImage(nonMineImages[Square.NumberOfMineNeighbours]);
@@ -81,7 +82,7 @@ namespace MineSweeperViewProject.View
                 }
             }
             else if (this.Square.isFlagged) setImage(flagImage);
-            else this.setImage(unfoldedImage);
+            else this.setImage(unfoldedImage);            
         }
 
         private void setImage(ImageSource source)

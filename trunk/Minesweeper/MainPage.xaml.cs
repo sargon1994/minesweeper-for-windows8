@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Threading.Tasks;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -52,16 +53,28 @@ namespace Minesweeper
             
         }
 
-        private void openGameVIewPage(object sender, TappedRoutedEventArgs e)
+        async Task showProgress()
         {
+            this.progressRing.IsActive = true;
+            this.loadingText.Text = "Creating game...";
+            await Task.Delay(TimeSpan.FromSeconds(0.1));            
+        }
+
+
+        private async void openGameVIewPage(object sender, TappedRoutedEventArgs e)
+        {
+            await showProgress();
+
             if (null != this.Frame)
             {
-                this.Frame.Navigate(typeof(GameViewPage));
+                MinesweeperPage.newGame();
+                this.Frame.Navigate(typeof(MinesweeperPage));
             }
         }
 
         private void openPreferencesPage(object sender, TappedRoutedEventArgs e)
         {
+            this.progressRing.IsActive = true;
             if (null != this.Frame)
             {
                 this.Frame.Navigate(typeof(PreferencesPage));
@@ -70,6 +83,7 @@ namespace Minesweeper
 
         private void openHelpPage(object sender, TappedRoutedEventArgs e)
         {
+            this.progressRing.IsActive = true;
             if (null != this.Frame)
             {
                 this.Frame.Navigate(typeof(HelpPage));

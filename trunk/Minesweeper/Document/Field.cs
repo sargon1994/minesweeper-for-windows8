@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Minesweeper.Document;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,21 +8,23 @@ namespace MineSweeperViewProject.Document
 {
     public class Field
     {
+        HashSet<FieldListener> listeners;
+
         Square[,] squares;
         int width, heigth;
         int mines;
+        bool gameHasStarted;
         bool gameHasEnded;
-        int pickedSquares;
-        int flaggedSquares;
 
         public Field(int width, int heigth, int mines)
         {
+            this.listeners = new HashSet<FieldListener>();
+
             this.width = width;
             this.heigth = heigth;
             this.mines = mines;
             this.gameHasEnded = false;
-            this.pickedSquares = 0;
-            this.flaggedSquares = 0;
+            this.gameHasStarted = false;
 
             this.squares = new Square[this.width, this.heigth];
             for (int x = 0; x < this.width; x++)
@@ -89,6 +92,11 @@ namespace MineSweeperViewProject.Document
                 }
         }
 
+        public void addListener(FieldListener listener)
+        {
+            this.listeners.Add(listener);
+        }
+
         public int Width
         {
             get { return width; }
@@ -104,14 +112,16 @@ namespace MineSweeperViewProject.Document
             get { return mines; }
         }
 
-        public int PickedSquares
-        {
-            get { return pickedSquares; }
-        }
-
         public int FlaggedSuares
         {
-            get { return flaggedSquares; }
+            get
+            {
+                int i = 0;
+                foreach (var s in this.squares)
+                    if (!s.isUnfolded && s.isFlagged)
+                        i++;
+                return i;
+            }
         }
 
         public int NeedToFind
@@ -127,23 +137,38 @@ namespace MineSweeperViewProject.Document
         public Boolean? Pick(Square picked)
         {
             if(gameHasEnded) return null;
-            if (this.pickedSquares == 0)
+            if (!this.gameHasStarted)
             {
                 this.Init(picked);
             }
+            gameHasStarted = true;
             bool result = picked.Pick();
-            pickedSquares++;
+            foreach (var l in this.listeners) l.fieldChanged(this);
             if (result == true)
             {
                 gameHasEnded = true;
+                foreach (var l in this.listeners) l.gameEnded(this, false);
                 return false;
             }
-            else if (pickedSquares >= this.Width * this.Heigth - mines)
+            else 
             {
-                gameHasEnded=true;
-                return true;
+                if (!this.hasUnfoldedNonMine())
+                {
+                    gameHasEnded = true;
+                    foreach (var l in this.listeners) l.gameEnded(this, true);
+                    return true;
+                }
+                else return null;
             }
-            else return null;
+        }
+
+        private bool hasUnfoldedNonMine()
+        {
+            for (int x = 0; x < this.width; x++)
+                for (int y = 0; y < this.heigth; y++)
+                    if (!this.getSquare(x, y).isUnfolded && !this.getSquare(x, y).isMine)
+                        return true;
+            return false;
         }
 
         public void Flag(Square picked)
@@ -151,13 +176,12 @@ namespace MineSweeperViewProject.Document
             if (picked.isFlagged)
             {
                 picked.isFlagged = false;
-                flaggedSquares--;
             }
             else
             {
                 picked.isFlagged = true;
-                flaggedSquares++;
             }
+            foreach (var l in this.listeners) l.fieldChanged(this);
         }
 
         public bool GameHasEnded
