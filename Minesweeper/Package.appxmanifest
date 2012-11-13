@@ -17,7 +17,10 @@
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Minesweeper.App">
       <VisualElements DisplayName="Minesweeper" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Minesweeper" ForegroundText="light" BackgroundColor="#464646">
         <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="white" />
+        <SplashScreen Image="Assets\finalSS.png" BackgroundColor="#266AAB" />
+        <InitialRotationPreference>
+          <Rotation Preference="landscape" />
+        </InitialRotationPreference>
       </VisualElements>
     </Application>
   </Applications>

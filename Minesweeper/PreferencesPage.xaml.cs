@@ -21,10 +21,7 @@ namespace Minesweeper
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
     public sealed partial class PreferencesPage : Minesweeper.Common.LayoutAwarePage
-    {        
-        private static String difficult = "Easy";
-        private static String size = "Small";        
-
+    {               
         public PreferencesPage()
         {
             this.InitializeComponent();
@@ -88,13 +85,7 @@ namespace Minesweeper
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
-        {
-            if (null != pageState)
-            {
-            }
-            else
-            {
-            }
+        {        
         }
 
         /// <summary>
@@ -121,18 +112,29 @@ namespace Minesweeper
         }
 
         private void changeMapSize(object sender, SelectionChangedEventArgs e)
-        {
+        {            
             String size = (String)e.AddedItems.First();            
             if (size.Equals("Small")) {
-                MinesweeperPage.getViewContext().setMapSize(0);
+                if (0 != MinesweeperPage.getViewContext().getMapSize())
+                {
+                    MinesweeperPage.getViewContext().setMapSize(0);
+                    MinesweeperPage.newGame();
+                }                
             }
             else if (size.Equals("Medium"))
             {
-                MinesweeperPage.getViewContext().setMapSize(1);
+                if (1 != MinesweeperPage.getViewContext().getMapSize())
+                {
+                    MinesweeperPage.getViewContext().setMapSize(1);
+                    MinesweeperPage.newGame();
+                }                
             } else {
-                MinesweeperPage.getViewContext().setMapSize(2);
-            }
-            MinesweeperPage.newGame();
+                if (2 != MinesweeperPage.getViewContext().getMapSize())
+                {
+                    MinesweeperPage.getViewContext().setMapSize(2);
+                    MinesweeperPage.newGame();
+                }                
+            }            
         }
 
         private void changeDifficult(object sender, SelectionChangedEventArgs e)
@@ -140,15 +142,27 @@ namespace Minesweeper
             String difficult = (String)e.AddedItems.First();
             if (difficult.Equals("Easy"))
             {
-                MinesweeperPage.getViewContext().setMineNumber(0);
+                if (0 != MinesweeperPage.getViewContext().getMineNumber())
+                {
+                    MinesweeperPage.getViewContext().setMineNumber(0);
+                    MinesweeperPage.newGame();
+                }                
             }
             else if (difficult.Equals("Medium"))
             {
-                MinesweeperPage.getViewContext().setMineNumber(1);
+                if (1 != MinesweeperPage.getViewContext().getMineNumber())
+                {
+                    MinesweeperPage.getViewContext().setMineNumber(1);
+                    MinesweeperPage.newGame();
+                }                
             }
             else
             {
-                MinesweeperPage.getViewContext().setMineNumber(2);
+                if (2 != MinesweeperPage.getViewContext().getMineNumber())
+                {
+                    MinesweeperPage.getViewContext().setMineNumber(2);
+                    MinesweeperPage.newGame();
+                }                
             }
         }
 

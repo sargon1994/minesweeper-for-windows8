@@ -69,18 +69,54 @@
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}" FontWeight="Bold" FontStyle="Italic"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="628" Grid.Row="1" Width="1364" VerticalAlignment="Top">
-            <Grid HorizontalAlignment="Left" Height="206" Margin="120,30,0,0" VerticalAlignment="Top" Width="451">
+        <Grid HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>                
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="200" Width="Auto" Margin="0,100,0,0">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Map size" VerticalAlignment="Top" Height="41" Width="193" FontWeight="Bold" FontSize="36" FontStyle="Italic" Margin="0,0,0,0"/>
+                <TextBlock HorizontalAlignment="Left" Margin="30,50,0,0" TextWrapping="Wrap" Text="Choose one of the three map size. Atterintion: the game will be restarted." VerticalAlignment="Top" Width="417" FontSize="24"/>
+                <ComboBox x:Name="mapSize" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Center" Width="120" SelectionChanged="changeMapSize">
+                    <x:String>Small</x:String>
+                    <x:String>Medium</x:String>
+                    <x:String>Large</x:String>
+                </ComboBox>
+            </Grid>
+            <Grid Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="200" Width="Auto" Margin="0,0,0,100">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Difficulty" VerticalAlignment="Top" Height="41" Width="193" FontWeight="Bold" FontSize="36" FontStyle="Italic" Margin="0,0,0,0"/>
+                <TextBlock HorizontalAlignment="Left" Margin="30,50,0,0" TextWrapping="Wrap" Text="Choose one of the three difficulty level. Atterintion: the game will be restarted." VerticalAlignment="Top" Width="417" FontSize="24"/>
+                <ComboBox x:Name="difficulty" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Center" Width="120" SelectionChanged="changeDifficult">
+                    <x:String>Easy</x:String>
+                    <x:String>Medium</x:String>
+                    <x:String>Hard</x:String>
+                </ComboBox>
+            </Grid>
+            <Grid Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Height="200" Width="Auto" Margin="0,100,0,0">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Interval" VerticalAlignment="Top" Height="41" Width="157" FontWeight="Bold" FontSize="36" FontStyle="Italic" Margin="0,0,0,0"/>
+                <TextBlock HorizontalAlignment="Left" Margin="30,50,0,0" TextWrapping="Wrap" Text="Choose one of the three interval level." VerticalAlignment="Top" Width="417" FontSize="24"/>
+                <ComboBox x:Name="interval" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Center" Width="120" SelectionChanged="changeInterval">
+                    <x:String>Low</x:String>
+                    <x:String>Medium</x:String>
+                    <x:String>High</x:String>
+                </ComboBox>
+            </Grid>
+            <Grid Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="200" Width="Auto" Margin="0,0,0,100">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Colored numbers" VerticalAlignment="Top" Height="41" Width="304" FontWeight="Bold" FontSize="36" FontStyle="Italic" Margin="0,0,0,0"/>
+                <TextBlock HorizontalAlignment="Left" Margin="30,50,0,0" TextWrapping="Wrap" Text="Choose to set colored or not colored numbers." VerticalAlignment="Top" Width="417" FontSize="24"/>
+                <ComboBox x:Name="coloredNumbers" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Center" Width="120" SelectionChanged="changeColoredNumbers">
+                    <x:String>False</x:String>
+                    <x:String>True</x:String>
+                </ComboBox>
+            </Grid>
+            <!--<Grid HorizontalAlignment="Left" Height="206" Margin="120,30,0,0" VerticalAlignment="Top" Width="451">
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Map size" VerticalAlignment="Top" Height="41" Width="193" FontWeight="Bold" FontSize="36" FontStyle="Italic" Margin="0,0,0,0"/>
                 <TextBlock HorizontalAlignment="Left" Margin="30,50,0,0" TextWrapping="Wrap" Text="Choose one of the three map size. Atterintion: the game will be restarted." VerticalAlignment="Top" Width="417" FontSize="24"/>
                 <ComboBox x:Name="mapSize" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Center" Width="182" SelectionChanged="changeMapSize">
                     <x:String>Small</x:String>
                     <x:String>Medium</x:String>
                     <x:String>Large</x:String>
-                </ComboBox>
-                <!--<RadioButton x:Name ="smallMap" Content="Small" HorizontalAlignment="Left" Margin="56,130,0,0" VerticalAlignment="Top" FontSize="18" Checked="setMapSizeToSmall"/>
-                <RadioButton x:Name ="mediumMap" Content="Medium" HorizontalAlignment="Left" Margin="156,130,0,0" VerticalAlignment="Top" FontSize="18" Checked="setMapSizeToMedium"/>
-                <RadioButton x:Name ="largeMap" Content="Large" HorizontalAlignment="Left" Margin="272,130,0,0" VerticalAlignment="Top" FontSize="18" Checked="setMapSizeToLarge"/>-->
+                </ComboBox>                
             </Grid>
             <Grid HorizontalAlignment="Left" Height="206" Margin="120,278,0,0" VerticalAlignment="Top" Width="451">
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Difficulty" VerticalAlignment="Top" Height="41" Width="193" FontWeight="Bold" FontSize="36" FontStyle="Italic" Margin="0,0,0,0"/>
@@ -89,10 +125,7 @@
                     <x:String>Easy</x:String>
                     <x:String>Medium</x:String>
                     <x:String>Hard</x:String>
-                </ComboBox>
-                <!--<RadioButton x:Name ="easyGame" Content="Easy" HorizontalAlignment="Left" Margin="56,130,0,0" VerticalAlignment="Top" FontSize="18" Checked="setDifficultyToEasy"/>
-                <RadioButton x:Name ="mediumGame" Content="Medium" HorizontalAlignment="Left" Margin="156,130,0,0" VerticalAlignment="Top" FontSize="18" Checked="setDifficultyToMedium"/>
-                <RadioButton x:Name ="hardGame" Content="Hard" HorizontalAlignment="Left" Margin="272,130,0,0" VerticalAlignment="Top" FontSize="18" Checked="setDifficultyToHard"/>-->
+                </ComboBox>                
             </Grid>
             <Grid HorizontalAlignment="Left" Height="206" Margin="700,20,0,0" VerticalAlignment="Top" Width="451">
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Interval" VerticalAlignment="Top" Height="41" Width="157" FontWeight="Bold" FontSize="36" FontStyle="Italic" Margin="0,0,0,0"/>
@@ -101,8 +134,7 @@
                     <x:String>Low</x:String>
                     <x:String>Medium</x:String>
                     <x:String>High</x:String>
-                </ComboBox>
-                <!--<Slider x:Name ="intervalSize" Margin="27,137,0,0" VerticalAlignment="Top" Width="402" Height="42" Foreground="#FF0D23F9" FontSize="14" HorizontalAlignment="Left" Background="#29FFFFFF" KeyUp="setInterval" StepFrequency="10"/>-->
+                </ComboBox>              
             </Grid>
             <Grid HorizontalAlignment="Left" Height="206" Margin="700,278,0,0" VerticalAlignment="Top" Width="451">
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Colored numbers" VerticalAlignment="Top" Height="41" Width="304" FontWeight="Bold" FontSize="36" FontStyle="Italic" Margin="0,0,0,0"/>
@@ -111,8 +143,7 @@
                     <x:String>False</x:String>
                     <x:String>True</x:String>
                 </ComboBox>
-            </Grid>
-        </Grid>
-
+            </Grid>-->
+        </Grid>        
     </Grid>
 </common:LayoutAwarePage>

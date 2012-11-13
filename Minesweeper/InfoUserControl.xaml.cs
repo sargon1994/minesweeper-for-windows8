@@ -20,6 +20,7 @@ namespace Minesweeper
 {
     public sealed partial class InfoUserControl : UserControl, FieldListener
     {
+        private static String endText = "";
         public InfoUserControl()
         {
             this.InitializeComponent();
@@ -28,8 +29,16 @@ namespace Minesweeper
         public void setField(Field field)
         {
             field.addListener(this);
-            this.numberOfMines.Text = field.NumberOfMines+"";
-            this.needToFind.Text = field.NeedToFind+"";
+            if (!field.GameHasEnded)
+            {
+                this.info.Text = "/";
+                this.numberOfMines.Text = field.NumberOfMines + "";
+                this.needToFind.Text = field.NeedToFind + "";
+            }
+            else
+            {
+                this.info.Text = endText;
+            }
         }
 
         public void fieldChanged(MineSweeperViewProject.Document.Field field)
@@ -41,7 +50,8 @@ namespace Minesweeper
         {
             this.numberOfMines.Text = "";
             this.needToFind.Text =  "";
-            this.info.Text = win?"You have won!":"You have lost!";
+            endText = win ? "You have won!" : "You have lost!";
+            this.info.Text = endText;
         }
     }
 

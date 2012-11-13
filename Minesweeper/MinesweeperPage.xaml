@@ -18,7 +18,7 @@
                 Style="{StaticResource HomeAppBarButtonStyle}" Margin="0,0,120,0" Click="openMainPage"/>
                 <Button x:Name="restartGameButton" 
                 HorizontalAlignment="Left" 
-                Margin="0,0,120,0" Click="restart" Content="Restart game" Background="{x:Null}" BorderThickness="2"/>
+                Margin="0,0,120,0" Click="restart" Content="Restart" Background="{x:Null}" BorderThickness="4" Foreground="Black"/>
                 <Button x:Name="preferencesPageButton" 
                 HorizontalAlignment="Right" 
                 Style="{StaticResource EditAppBarButtonStyle}" Margin="0,0,60,0" Click="openPreferencesPage"/>
@@ -33,7 +33,7 @@
     <Page.Resources>
 
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">My Application</x:String>
+        <x:String x:Key="AppName">Game</x:String>
     </Page.Resources>
 
     <!--
@@ -49,16 +49,17 @@
 
         <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Grid.RowSpan="2" Name="fieldViewGrid">
             <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="Assets/bg_menu2.png" Margin="0,0,0,0" Grid.RowSpan="2"/>
-            <View:FieldViewPseudo3D x:Name="fieldViewPseudo3D" Visibility="Collapsed"/>
+            <View:FieldViewPseudo3D x:Name="fieldViewPseudo3D"/>
         </Grid>
         <!-- Back button and page title -->
-        <local:InfoUserControl x:Name="infoUserControl" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Top" Visibility="Collapsed"/>
+        <local:InfoUserControl x:Name="infoUserControl" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Top"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>                                    
+            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}" FontWeight="Bold" FontStyle="Italic" Visibility="Collapsed"/>
         </Grid>        
 
         <VisualStateManager.VisualStateGroups>

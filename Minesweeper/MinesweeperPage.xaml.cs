@@ -35,10 +35,11 @@ namespace Minesweeper
 
             if (null == field) {
                 field = new Field(getViewContext().getMapWidth(), getViewContext().getMapHeight(), getViewContext().getMines());
-                this.infoUserControl.setField(field);
-                cameraPosition = this.fieldViewPseudo3D.setCameraPosition();                                                                       
+                //this.infoUserControl.setField(field);
+                //cameraPosition = this.fieldViewPseudo3D.setCameraPosition();                                                                       
             }
 
+            cameraPosition = this.fieldViewPseudo3D.setCameraPosition();    
             this.infoUserControl.setField(field);
             this.fieldViewPseudo3D.setField(field);
             this.fieldViewPseudo3D.setContext(getViewContext());
