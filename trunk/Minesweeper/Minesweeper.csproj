@@ -160,6 +160,7 @@
     <Content Include="Assets\bg_game.png" />
     <Content Include="Assets\bg_menu.PNG" />
     <Content Include="Assets\bg_menu2.png" />
+    <Content Include="Assets\finalSS.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\mine_indicate1.png" />
     <Content Include="Assets\mine_indicate2.png" />
