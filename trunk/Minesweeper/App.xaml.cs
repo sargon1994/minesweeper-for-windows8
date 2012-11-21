@@ -86,8 +86,17 @@ namespace Minesweeper
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
-            await Minesweeper.Common.SuspensionManager.SaveAsync();
-            deferral.Complete();
+            try
+            {
+                await Minesweeper.Common.SuspensionManager.SaveAsync();
+            }
+            catch (Exception)
+            {               
+            }
+            finally
+            {
+                deferral.Complete();
+            }           
         }
     }
 }
